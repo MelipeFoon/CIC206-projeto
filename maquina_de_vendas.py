@@ -2,13 +2,32 @@ from tkinter import *
 from tkinter import ttk
 
 # Descrição formal do AFD
-I = [0.25, 0.50, 1.00]
-O = ['r', 'n', 't']
-S_ = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-s0 = 0
-F = [8]
-delta = [[1, 2, 4], [2, 3, 5], [3, 4, 6], [4, 5, 7], [5, 6, 8], [6, 7, 8], [7, 8, 8], [8, 8, 8], [8, 8, 8]] # Tabela de estado próximo estado
-delta2 = [['n', 'n', 'n'], ['n', 'n', 'n'], ['n', 'n', 'n'], ['n', 'n', 'n'], ['n', 'n', 'n'], ['n', 'n', 't'], ['n', 'n', 't'], ['n', 't', 't'], ['t', 't', 't']] # Saída
+I = [0.25, 0.50, 1.00] # Entradas
+O = ['r', 'n', 't'] # Saídas
+S_ = [0, 1, 2, 3, 4, 5, 6, 7, 8] # Estados
+s0 = 0 # Estado inicial
+F = [8] # Estados de aceitação
+# Tabela de transição de estados 
+      # 0.25  0.50  1.00
+delta = [[1,   2,   4], # Próximo estado
+         [2,   3,   5], 
+         [3,   4,   6], 
+         [4,   5,   7], 
+         [5,   6,   8], 
+         [6,   7,   8], 
+         [7,   8,   8], 
+         [8,   8,   8], 
+         [8,   8,   8]] 
+        # 0.25  0.50  1.00
+delta2 = [['n', 'n', 'n'], # Saída
+          ['n', 'n', 'n'], 
+          ['n', 'n', 'n'], 
+          ['n', 'n', 'n'], 
+          ['n', 'n', 'n'], 
+          ['n', 'n', 't'], 
+          ['n', 'n', 't'], 
+          ['n', 't', 't'], 
+          ['t', 't', 't']] 
 
 # função de transição
 def f(estd, entrada):
@@ -16,12 +35,13 @@ def f(estd, entrada):
 
 # função de saída
 def g(estd, cad):
-    if len(cad) <= 0:
+    if len(cad) <= 0 or sum(cad) < 2:
         return 'n'
     if sum(cad) == 2:
         return 'r'
     return delta2[estd][I.index(cad[-1])]
 
+# função do botão dispensar
 def botao():
     saldo = 0
     estado = s0
