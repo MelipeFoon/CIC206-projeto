@@ -108,13 +108,13 @@ root.rowconfigure(0, weight=1)
 # Indicador do saldo acumulado
 sld = StringVar()
 sld.set(0.0)
-ttk.Label(mainframe, textvariable=sld).grid(column=3, row=2, sticky=(W, E))
+ttk.Label(mainframe, textvariable=sld).grid(column=3, row=2, sticky=E)
 
 # Indicador da resposta
 resposta = StringVar()
-ttk.Label(mainframe, textvariable=resposta).grid(column=2, row=5, sticky=(W, E))
+ttk.Label(mainframe, textvariable=resposta).grid(column=2, columnspan=2, row=5, sticky=(W, E))
 
-ttk.Label(mainframe, text="Saldo").grid(column=4, row=2, sticky=W)
+ttk.Label(mainframe, text="Saldo").grid(column=4, row=2, sticky=E)
 ttk.Label(mainframe, text="Resposta:").grid(column=1, row=5, sticky=W)
 
 # Botões com valores das moedas
@@ -122,6 +122,8 @@ ttk.Button(mainframe, text="0.25", command=add025).grid(column=1, row=1, sticky=
 ttk.Button(mainframe, text="0.50", command=add050).grid(column=2, row=1, sticky=N)
 ttk.Button(mainframe, text="1.00", command=add100).grid(column=3, row=1, sticky=N)
 
+imgobj = PhotoImage(file='lata.png')
+ttk.Label(mainframe, image=imgobj).grid(column=1,columnspan=3 , row=3)
 # Botão de dispensar o refrigerante
 ttk.Button(mainframe, text="Dispensar", command=botao).grid(column=4, row=1, sticky=W)
 
